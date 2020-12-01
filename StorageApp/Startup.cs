@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Service.Interfaces;
+using Service.Repositories;
 
 namespace StorageApp
 {
@@ -34,7 +35,10 @@ namespace StorageApp
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            // Unit of Work Layer
+            services.AddScoped<IUOW, UOW>();
+            
+            // Database Layer
             services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("StoreDb"))
             );
