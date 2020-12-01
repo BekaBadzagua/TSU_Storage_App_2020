@@ -14,10 +14,7 @@ namespace DAL.Entities
 
         public string Pricture { get; set; }
 
-        // დასამატებელია კავშირი
-
         public ICollection<StoreProduct> ProductStores { get; set; }
-
 
     }
 }

@@ -42,6 +42,11 @@ namespace DAL.Context
                 .HasMaxLength(500)
                 .IsRequired();
 
+            modelBuilder.Entity<Product>()
+                .HasMany(x => x.ProductStores)
+                .WithOne(x => x.Product)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<Store>()
                 .Property(x => x.Name)
@@ -57,6 +62,11 @@ namespace DAL.Context
                 .Property(x => x.Type)
                 .HasMaxLength(500)
                 .IsRequired();
+
+            modelBuilder.Entity<Store>()
+                .HasMany(x => x.StoreProducts)
+                .WithOne(x => x.Store)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<StoreProduct>()
                 .Property(x => x.BarCode)

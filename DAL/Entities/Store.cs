@@ -14,8 +14,6 @@ namespace DAL.Entities
 
         public string Type { get; set; }
 
-        // დაასმატებბელია კავშირი
-
         public ICollection<StoreProduct> StoreProducts { get; set; }
 
     }
