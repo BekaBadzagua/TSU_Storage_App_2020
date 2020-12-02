@@ -7,6 +7,6 @@ namespace Service.Interfaces
 {
     public interface IStoreInterface : IRepositoryBase<Store>
     {
-
+        IEnumerable<Store> GetAll();
     }
 }

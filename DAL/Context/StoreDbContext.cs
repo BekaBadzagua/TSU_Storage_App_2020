@@ -20,8 +20,6 @@ namespace DAL.Context
 
         public DbSet<StoreProduct> StoreProduct { get; set; }
 
-        // ანალოგიური შუალედურზე
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

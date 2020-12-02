@@ -44,9 +44,7 @@ namespace StorageApp
             // Business Logic Layer
             services.AddAutoMapper(typeof(BLL.Mappings.MapProfile).Assembly);
             services.AddTransient<IProductOperation, ProductOperation>();
-
-
-
+            services.AddTransient<IStoreOperation, StoreOperation>();
 
 
             // Database Layer

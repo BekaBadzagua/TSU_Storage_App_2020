@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs.Product;
+using BLL.DTOs.Store;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace BLL.Mappings
         public MapProfile()
         {
             CreateMap<Product, ProductListDTO>();
+            CreateMap<Store, StoreListDTO>();
         }
     }
 }
