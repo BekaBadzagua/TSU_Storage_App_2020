@@ -12,5 +12,9 @@ namespace StorageApp.Controllers
         {
             return View();
         }
+        public IActionResult LogIn()
+        {
+            return View();
+        }
     }
 }

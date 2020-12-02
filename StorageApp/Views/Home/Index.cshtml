@@ -4,47 +4,28 @@
 }
 
 
+<div class="centered">
+    <h1>Welcome to the StorageApp!</h1>
 
-@*<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Manufacturer</th>
-            <th scope="col">Pricture</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Products)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Manufacturer</td>
-                <td>@item.Pricture</td>
-            </tr>
-        }
-    </tbody>
-</table>*@
+    <div class="home-buttons-wrapper">
+        <a class="btn btn-success" asp-area="" asp-controller="Store" asp-action="Index">მაღაზიები</a>
+        <a class="btn btn-success" asp-area="" asp-controller="Product" asp-action="Index">პროდუქტი</a>
+    </div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Manufacturer</th>
-            <th scope="col">Pricture</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Stores)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Address</td>
-                <td>@item.Type</td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+    <div class="author-wrapper">
+        <h2><b>ავტორები</b></h2>
+
+        <h4>ბექა ბაძაღუა</h4>
+        <h4>ბაქარ ნემსიწვერიძე</h4>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
