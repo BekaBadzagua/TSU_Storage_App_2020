@@ -40,14 +40,14 @@ namespace DAL.Context
                 {
                     Id = 1,
                     Name = "MusicRoom",
-                    Adress = "New York, #132",
+                    Address = "New York, #132",
                     Type = "Market"
                 },
                 new Store()
                 {
                     Id = 2,
                     Name = "MusicHouse",
-                    Adress = "Las Vegas, #9",
+                    Address = "Las Vegas, #9",
                     Type = "Market"
                 }
             );

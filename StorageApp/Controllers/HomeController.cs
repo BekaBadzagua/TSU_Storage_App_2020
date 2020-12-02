@@ -13,33 +13,9 @@ namespace StorageApp.Controllers
     public class HomeController : Controller
     {
 
-        private readonly IProductOperation _productOperation;
-        private readonly IStoreOperation _storeOperation;
-
-
-        public HomeController(IProductOperation productOperation, IStoreOperation storeOperation)
-        {
-            _productOperation = productOperation;
-            _storeOperation = storeOperation;
-        }
-
-
-
-
         public IActionResult Index()
         {
-
-            //ProductListVM model = new ProductListVM()
-            //{
-            //    Products = _productOperation.GetAll()
-            //};           
-            StoreListVM model = new StoreListVM()
-            {
-                Stores = _storeOperation.GetAll()
-            };
-
-
-            return View(model);
+            return View();
         }
 
 

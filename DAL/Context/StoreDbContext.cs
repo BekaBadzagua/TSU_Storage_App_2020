@@ -52,7 +52,7 @@ namespace DAL.Context
                 .IsRequired();
 
             modelBuilder.Entity<Store>()
-                .Property(x => x.Adress)
+                .Property(x => x.Address)
                 .HasMaxLength(500)
                 .IsRequired();
 

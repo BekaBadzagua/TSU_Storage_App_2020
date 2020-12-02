@@ -1,28 +1,28 @@
-﻿
+﻿@model ProductListVM
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Product Page</h2>
 
-@*<table class="table table-bordered">
-        <thead>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Pricture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Manufacturer</th>
-                <th scope="col">Pricture</th>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Manufacturer</td>
+                <td>@item.Pricture</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Products)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.Manufacturer</td>
-                    <td>@item.Pricture</td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
+        }
+    </tbody>
+</table>
