@@ -8,6 +8,6 @@ namespace Service.Interfaces
 {
     public interface IProductRepository : IRepositoryBase<Product>
     {
-
+        IEnumerable<Product> GetAll();
     }
 }

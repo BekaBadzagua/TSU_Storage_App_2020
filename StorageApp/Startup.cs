@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BLL.Interfaces;
+using BLL.Operations;
 using DAL.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +40,15 @@ namespace StorageApp
 
             // Unit of Work Layer
             services.AddScoped<IUOW, UOW>();
-            
+
+            // Business Logic Layer
+            services.AddAutoMapper(typeof(BLL.Mappings.MapProfile).Assembly);
+            services.AddTransient<IProductOperation, ProductOperation>();
+
+
+
+
+
             // Database Layer
             services.AddDbContext<StoreDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("StoreDb"))

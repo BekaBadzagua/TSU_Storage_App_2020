@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,13 @@ namespace Service.Repositories
             :base(context)
         {
 
+        }
+
+        public IEnumerable<Product> GetAll()
+        {
+            // No Need for that
+            //return Context.Products.Include(x => x.ProductStores);
+            return Context.Products;
         }
     }
 }
