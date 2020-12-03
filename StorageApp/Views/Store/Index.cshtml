@@ -3,7 +3,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Store Page</h2>
+<h2>Store List</h2>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary right" data-toggle="modal" data-target="#addModal">
+    Add Store
+</button>
+
 
 <table class="table table-hover">
     <thead>
@@ -12,9 +19,34 @@
             <th scope="col">Name</th>
             <th scope="col">Address</th>
             <th scope="col">Type</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td style="max-width:50px">
+                <input type="text" class="form-control">
+            </td>
+            <td>
+                <input type="text" class="form-control">
+            </td>
+            <td>
+                <input type="text" class="form-control">
+            </td>
+            <td>
+                <select class="form-control">
+                    <option>Market</option>
+                    <option>SuperMarket</option>
+                    <option>HiperMarket</option>
+                    <option>MiniMarket</option>
+                    <option>Malll</option>
+                    <option>other</option>
+                </select>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info">ძებნა</button>
+            </td>
+        </tr>
         @foreach (var item in Model.Stores)
         {
             <tr>
@@ -22,7 +54,64 @@
                 <td>@item.Name</td>
                 <td>@item.Address</td>
                 <td>@item.Type</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="btn btn-war dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <ul>
+                                <li><a class="dropdown-item" href="#">Show</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <label for="email">Name</label>
+                        <input name="email" type="email" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="adress">Adress</label>
+                        <input name="adress" type="text" class="form-control" placeholder="City, Street, 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select name="type" class="form-control">
+                            <option>Market</option>
+                            <option>SuperMarket</option>
+                            <option>HiperMarket</option>
+                            <option>MiniMarket</option>
+                            <option>Malll</option>
+                            <option>other</option>
+                        </select>
+                    </div>
+                    <div style="height:40px">
+                        <button type="submit" class="btn btn-primary right">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

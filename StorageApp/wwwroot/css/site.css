@@ -11,7 +11,17 @@
 .centered{
     text-align:center;
 }
+li {
+    list-style-type: none;
+}
 
+.centered {
+    text-align: center;
+}
+
+.right {
+    float: right;
+}
 
 
 
