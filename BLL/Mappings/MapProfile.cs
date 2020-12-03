@@ -14,6 +14,7 @@ namespace BLL.Mappings
         {
             CreateMap<Product, ProductListDTO>();
             CreateMap<Store, StoreListDTO>();
+            CreateMap<StoreDTO, Store>();
         }
     }
 }

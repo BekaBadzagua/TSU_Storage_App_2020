@@ -15,10 +15,5 @@ namespace Service.Repositories
         {
 
         }
-
-        public IEnumerable<Store> GetAll()
-        {
-            return Context.Stores.Include(x => x.StoreProducts);
-        }
     }
 }

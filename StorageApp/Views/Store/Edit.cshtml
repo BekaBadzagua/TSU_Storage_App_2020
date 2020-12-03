@@ -1,0 +1,42 @@
+﻿@model StorageApp.Models.StoreVM
+@{
+    ViewData["Title"] = "Edit Store";
+}
+
+
+<div class="form-wrapper">
+    <form asp-action="Edit" method="post">
+        <h2 class="centered">Edit Store</h2>
+
+        <div class="form-group">
+            <label for="id">Id</label>
+            <input name="id" type="text" class="form-control" value="@Model.Store.Id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input name="name" type="text" class="form-control" value="@Model.Store.Name">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input name="address" type="text" class="form-control" value="@Model.Store.Address">
+        </div>
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select id="typeSelect" name="type" class="form-control">
+                <option>@Model.Store.Type</option>
+                <option>SuperMarket</option>
+                <option>Market</option>
+                <option>HiperMarket</option>
+                <option>MiniMarket</option>
+                <option>Malll</option>
+                <option>other</option>
+            </select>
+        </div>
+
+        <div class="centered">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+

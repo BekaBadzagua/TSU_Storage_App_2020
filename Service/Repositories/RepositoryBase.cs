@@ -19,12 +19,16 @@ namespace Service.Repositories
 
         public void Create(T entity)
         {
+
             Context.Set<T>().Add(entity);
+            Context.SaveChanges();
         }
 
-        public void Delete(T entity)
+        public void Delete(int id)
         {
+            var entity = Get(id);
             Context.Set<T>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public IEnumerable<T> FindAll()
@@ -45,6 +49,7 @@ namespace Service.Repositories
         public void Update(T entity)
         {
             Context.Set<T>().Update(entity);
+            Context.SaveChanges();
         }
     }
 }

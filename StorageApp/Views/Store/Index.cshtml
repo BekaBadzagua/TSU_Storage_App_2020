@@ -1,4 +1,4 @@
-﻿@model StoreListVM
+﻿@model StorageApp.Models.StoreListVM
 @{
     ViewData["Title"] = "Index";
 }
@@ -62,8 +62,18 @@
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <ul>
-                                <li><a class="dropdown-item" href="#">Show</a></li>
-                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Store"
+                                       asp-action="Edit"
+                                       asp-route-id="@item.Id">Edit</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Store"
+                                       asp-action="Delete"
+                                       asp-route-id="@item.Id">Delete</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -87,18 +97,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="#">
+                <form method="post" asp-action="Add">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input name="name" type="email" class="form-control" placeholder="Name">
+                        <input name="name" type="text" class="form-control" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <label for="adress">Adress</label>
-                        <input name="adress" type="text" class="form-control" placeholder="City, Street, 1">
+                        <label for="address">Address</label>
+                        <input name="address" type="text" class="form-control" placeholder="City, Street, 1">
                     </div>
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <select name="type" class="form-control">
+                        <select name="type" class="form-control" value="">
                             <option>Market</option>
                             <option>SuperMarket</option>
                             <option>HiperMarket</option>
