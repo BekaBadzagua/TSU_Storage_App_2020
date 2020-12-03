@@ -1,9 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Login Page";
+    ViewData["Title"] = "Register Page";
 }
 <div class="form-wrapper">
     <form action="#" method="post">
-        <h1>Login</h1>
+        <h1>Registration</h1>
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" name="email" placeholder="Enter email">
@@ -12,8 +12,12 @@
             <label for="password">Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-success">Login</button>
+        <div class="form-group">
+            <label for="cpassword">Password</label>
+            <input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
+        </div>
+        <button type="submit" class="btn btn-success">Regiter</button>
         <hr />
-        <p style="font-size: 20px">Do not have an account? <a asp-controller="Auth" asp-action="Register">Register</a>.</p>
+        <p style="font-size: 20px">Do you have an account? <a asp-controller="Auth" asp-action="Login">Login</a>.</p>
     </form>
 </div>
