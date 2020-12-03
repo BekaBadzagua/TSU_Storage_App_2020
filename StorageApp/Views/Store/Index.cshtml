@@ -65,6 +65,12 @@
                                 <li>
                                     <a class="dropdown-item"
                                        asp-controller="Store"
+                                       asp-action="Show"
+                                       asp-route-id="@item.Id">Show</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Store"
                                        asp-action="Edit"
                                        asp-route-id="@item.Id">Edit</a>
                                 </li>

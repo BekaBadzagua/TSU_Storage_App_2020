@@ -1,4 +1,5 @@
-﻿using BLL.DTOs.Store;
+﻿using BLL.DTOs.Product;
+using BLL.DTOs.Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace StorageApp.Models
     public class StoreVM
     {
         public StoreListDTO Store { get; set; }
+        public IEnumerable<StoreProductListDTO> Products { get; set; }
     }
 }

@@ -13,5 +13,8 @@ namespace BLL.Interfaces
         void Add(StoreDTO store);
         void Edit(StoreDTO store);
         void Delete(int id);
+        IEnumerable<StoreProductListDTO> GetProducts(int storeId);
+        void AttachProduct(StoreProductDTO product);
+        void DetachProduct(int id);
     }
 }

@@ -51,5 +51,22 @@ namespace BLL.Operations
             return _mapper.Map<IEnumerable<StoreListDTO>>(stores);
 
         }
+
+        public IEnumerable<StoreProductListDTO> GetProducts(int storeId)
+        {
+            var products = _uow.StoreProduct.FindByCondition_IncludeProduct(prod => prod.StoreID == storeId);
+
+            return _mapper.Map<IEnumerable<StoreProductListDTO>>(products);
+        }
+
+        public void AttachProduct(StoreProductDTO product)
+        {
+            _uow.StoreProduct.Create(_mapper.Map<StoreProduct>(product));
+        }
+
+        public void DetachProduct(int id)
+        {
+            _uow.StoreProduct.Delete(id);
+        }
     }
 }

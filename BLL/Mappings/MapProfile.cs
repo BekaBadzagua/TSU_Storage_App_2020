@@ -15,6 +15,10 @@ namespace BLL.Mappings
             CreateMap<Product, ProductListDTO>();
             CreateMap<Store, StoreListDTO>();
             CreateMap<StoreDTO, Store>();
+            CreateMap<StoreProduct, StoreProductListDTO>()
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+            CreateMap<StoreProductDTO, StoreProduct>();
+
         }
     }
 }
