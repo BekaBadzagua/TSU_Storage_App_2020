@@ -8,8 +8,9 @@ namespace BLL.Interfaces
 
     public interface IStoreOperation
     {
-        IEnumerable<StoreListDTO> GetAll();
-        StoreListDTO Get(int id);
+        IEnumerable<StoreDTO> GetAll();
+        IEnumerable<StoreDTO> GetByFilter(StoreDTO filter);
+        StoreDTO Get(int id);
         void Add(StoreDTO store);
         void Edit(StoreDTO store);
         void Delete(int id);

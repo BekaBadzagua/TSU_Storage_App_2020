@@ -5,6 +5,7 @@ using DAL.Entities;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BLL.Operations
@@ -37,18 +38,18 @@ namespace BLL.Operations
         }
 
 
-        public StoreListDTO Get(int id)
+        public StoreDTO Get(int id)
         {
             var store = _uow.Store.Get(id);
 
-            return _mapper.Map<StoreListDTO>(store);
+            return _mapper.Map<StoreDTO>(store);
         }
 
-        public IEnumerable<StoreListDTO> GetAll()
+        public IEnumerable<StoreDTO> GetAll()
         {
             var stores = _uow.Store.FindAll();
 
-            return _mapper.Map<IEnumerable<StoreListDTO>>(stores);
+            return _mapper.Map<IEnumerable<StoreDTO>>(stores);
 
         }
 
@@ -67,6 +68,22 @@ namespace BLL.Operations
         public void DetachProduct(int id)
         {
             _uow.StoreProduct.Delete(id);
+        }
+
+        public IEnumerable<StoreDTO> GetByFilter(StoreDTO filter)
+        {
+            var stores = _uow.Store.FindAll();
+
+            if (filter.Id != 0)
+                stores = stores.Where(x => x.Id == filter.Id);
+            if (filter.Name != null)
+                stores = stores.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
+            if (filter.Address != null)
+                stores = stores.Where(x => x.Address.ToLower().Contains(filter.Address.ToLower()));
+            if (filter.Type != null && filter.Type != "All")
+                stores = stores.Where(x => x.Type == filter.Type);
+
+            return _mapper.Map<IEnumerable<StoreDTO>>(stores);
         }
     }
 }

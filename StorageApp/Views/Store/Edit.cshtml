@@ -1,4 +1,4 @@
-﻿@model StorageApp.Models.StoreVM
+﻿@model BLL.DTOs.Store.StoreDTO
 @{
     ViewData["Title"] = "Edit Store";
 }
@@ -10,20 +10,22 @@
 
         <div class="form-group">
             <label for="id">Id</label>
-            <input name="id" type="text" class="form-control" value="@Model.Store.Id" disabled>
+            <input name="id" type="text" class="form-control" value="@Model.Id" disabled>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input name="name" type="text" class="form-control" value="@Model.Store.Name">
+            <input name="name" type="text" class="form-control" value="@Model.Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input name="address" type="text" class="form-control" value="@Model.Store.Address">
+            <input name="address" type="text" class="form-control" value="@Model.Address">
+            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label for="type">Type</label>
             <select id="typeSelect" name="type" class="form-control">
-                <option>@Model.Store.Type</option>
+                <option>@Model.Type</option>
                 <option>SuperMarket</option>
                 <option>Market</option>
                 <option>HiperMarket</option>
@@ -31,6 +33,7 @@
                 <option>Malll</option>
                 <option>other</option>
             </select>
+            <span asp-validation-for="Type" class="text-danger"></span>
         </div>
 
         <div class="centered">

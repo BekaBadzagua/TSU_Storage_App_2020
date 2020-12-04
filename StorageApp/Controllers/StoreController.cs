@@ -13,17 +13,19 @@ namespace StorageApp.Controllers
     public class StoreController : Controller
     {
         private readonly IStoreOperation _storeOperation;
+        private readonly IProductOperation _productOperation;
 
-        public StoreController(IStoreOperation storeOperation)
+        public StoreController(IStoreOperation storeOperation, IProductOperation productOperation)
         {
             _storeOperation = storeOperation;
+            _productOperation = productOperation;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(StoreDTO filter)
         {
-            StoreListVM model = new StoreListVM()
+            var model = new StoreListVM()
             {
-                Stores= _storeOperation.GetAll()
+                Stores = _storeOperation.GetByFilter(filter)
             };
 
             return View(model);
@@ -31,11 +33,15 @@ namespace StorageApp.Controllers
 
         public IActionResult Show(int id)
         {
-            StoreVM model = new StoreVM()
+            var model = new StoreVM()
             {
                 Store = _storeOperation.Get(id),
                 Products = _storeOperation.GetProducts(id)
             };
+
+
+            ViewBag.fullProductList = _productOperation.GetAll();
+
             return View(model);
         }
 
@@ -43,26 +49,35 @@ namespace StorageApp.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            StoreVM model = new StoreVM()
-            {
-                Store = _storeOperation.Get(id),
-                Products = null
-            };
+            var model = _storeOperation.Get(id);
 
             return View(model);
         }
         [HttpPost]
-        public RedirectToActionResult Edit(StoreDTO store)
+        public IActionResult Edit(StoreDTO store)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(store);
+            }
+
             _storeOperation.Edit(store);
-            return RedirectToAction("Index", "Store");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public RedirectToActionResult Add(StoreDTO store)
+        public IActionResult Add(StoreListVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                model.Stores = _storeOperation.GetAll();
+                return View("Index", model);
+            }
+
+            var store = model.FormStore;
             _storeOperation.Add(store);
-            return RedirectToAction("Index", "Store");
+
+            return RedirectToAction(nameof(Index));
         }
 
         public RedirectToActionResult Delete(int id)
@@ -70,19 +85,31 @@ namespace StorageApp.Controllers
             _storeOperation.Delete(id);
             return RedirectToAction("Index", "Store");
         }
+
         [HttpPost]
-        public RedirectToActionResult Attach(StoreProductDTO product)
+        public IActionResult Attach(StoreVM model)
         {
+            if (!ModelState.IsValid)
+            {
+
+                model.Store = _storeOperation.Get(model.FormAdd.StoreID);
+                model.Products = _storeOperation.GetProducts(model.FormAdd.StoreID);
+                ViewBag.fullProductList = _productOperation.GetAll();
+
+                return View("Show", model);
+            }
+
+            var product = model.FormAdd;
             _storeOperation.AttachProduct(product);
 
-            return RedirectToAction("Show", "Store", new { id = product.StoreID });
+
+            return RedirectToAction(nameof(Show), new { id = model.FormAdd.StoreID });
         }
 
         [Route("Store/Detach/{storeId}/{productId}")]
         public RedirectToActionResult Detach(int storeId, int productId)
         {
             _storeOperation.DetachProduct(productId);
-
             return RedirectToAction("Show", "Store", new { id = storeId });
         }
     }

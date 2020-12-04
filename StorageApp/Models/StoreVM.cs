@@ -9,7 +9,8 @@ namespace StorageApp.Models
 {
     public class StoreVM
     {
-        public StoreListDTO Store { get; set; }
+        public StoreDTO Store { get; set; }
         public IEnumerable<StoreProductListDTO> Products { get; set; }
+        public StoreProductDTO FormAdd { get; set; }
     }
 }

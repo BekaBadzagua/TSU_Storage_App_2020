@@ -42,3 +42,17 @@ li {
     width:450px;
     margin: auto;
 }
+
+/*ErrorMessages*/
+.error-list {
+    background-color: rgba(255, 95, 43, 0.25);
+    font-size: 20px;
+    border-radius:30px;
+
+}
+
+.error-list span{
+    list-style-type:disc;
+    display:block;
+    margin:5px 50px;
+}

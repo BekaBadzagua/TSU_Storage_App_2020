@@ -3,13 +3,23 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="error-list">
+    <span asp-validation-for="FormStore.Name" class="text-danger"></span>
+    <span asp-validation-for="FormStore.Address" class="text-danger"></span>
+    <span asp-validation-for="FormStore.Type" class="text-danger"></span>
+</div>
+
+
+
 <h2>Store List</h2>
 
-
-<!-- Button trigger modal -->
 <button type="button" class="btn btn-primary right" data-toggle="modal" data-target="#addModal">
     Add Store
 </button>
+
+@*იმისათვის რომ  form ლემენტი არ ჩავსვათ tr ში. ეს არის html 5 სინტაქსი
+    არ იმუშავებს internet expolrer-ში*@
+<form method="GET" asp-action="Index" id="my_form"></form>
 
 
 <table class="table table-hover">
@@ -25,16 +35,17 @@
     <tbody>
         <tr>
             <td style="max-width:50px">
-                <input type="text" class="form-control">
+                <input name="Id" form="my_form" type="text" class="form-control">
             </td>
             <td>
-                <input type="text" class="form-control">
+                <input name="Name" form="my_form" type="text" class="form-control">
             </td>
             <td>
-                <input type="text" class="form-control">
+                <input name="address" form="my_form" type="text" class="form-control">
             </td>
             <td>
-                <select class="form-control">
+                <select name="Type" form="my_form" class="form-control">
+                    <option>All</option>
                     <option>Market</option>
                     <option>SuperMarket</option>
                     <option>HiperMarket</option>
@@ -44,7 +55,7 @@
                 </select>
             </td>
             <td>
-                <button type="button" class="btn btn-info">ძებნა</button>
+                <button type="submit" form="my_form" class="btn btn-info">ძებნა</button>
             </td>
         </tr>
         @foreach (var item in Model.Stores)
@@ -91,9 +102,6 @@
 
 
 
-
-
-<!-- Bootstrap Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -105,16 +113,19 @@
             <div class="modal-body">
                 <form method="post" asp-action="Add">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input name="name" type="text" class="form-control" placeholder="Name">
+                        <label for="FormStore.Name">Name</label>
+                        <input name="FormStore.Name" type="text" class="form-control" placeholder="Name">
+                        <span asp-validation-for="FormStore.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input name="address" type="text" class="form-control" placeholder="City, Street, 1">
+                        <label for="FormStore.Address">Address</label>
+                        <input name="FormStore.Address" type="text" class="form-control" placeholder="City, Street, 1">
+                        <span asp-validation-for="FormStore.Address" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="type">Type</label>
-                        <select name="type" class="form-control" value="">
+                        <label for="FormStore.Type">Type</label>
+                        <select name="FormStore.Type" class="form-control" value="">
+                            <option></option>
                             <option>Market</option>
                             <option>SuperMarket</option>
                             <option>HiperMarket</option>
@@ -122,6 +133,7 @@
                             <option>Malll</option>
                             <option>other</option>
                         </select>
+                        <span asp-validation-for="FormStore.Type" class="text-danger"></span>
                     </div>
                     <div style="height:40px">
                         <button type="submit" class="btn btn-primary right">Save changes</button>
