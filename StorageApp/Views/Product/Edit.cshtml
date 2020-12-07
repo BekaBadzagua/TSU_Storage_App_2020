@@ -1,0 +1,36 @@
+﻿@model BLL.DTOs.Product.ProductDTO
+@{
+    ViewData["Title"] = "Edit product";
+}
+
+
+<div class="form-wrapper">
+    <form asp-action="Edit" method="post">
+        <h2 class="centered">Edit Product</h2>
+
+        <div class="form-group">
+            <label for="id">Id</label>
+            <input name="id" type="text" class="form-control" value="@Model.Id" disabled>
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input name="name" type="text" class="form-control" value="@Model.Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="manufacturer">Manufacturer</label>
+            <input name="manufacturer" type="text" class="form-control" value="@Model.Manufacturer">
+            <span asp-validation-for="Manufacturer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="picture">Picture</label>
+            <input name="picture" type="text" class="form-control" value="@Model.Picture">
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+
+        <div class="centered">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </div>
+    </form>
+</div>

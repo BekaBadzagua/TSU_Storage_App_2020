@@ -12,9 +12,11 @@ namespace BLL.Mappings
     {
         public MapProfile()
         {
-            CreateMap<Product, ProductListDTO>();
+            CreateMap<Product, ProductDTO>();
             CreateMap<Store, StoreDTO>();
+            CreateMap<Product, ProductListDTO>();
             CreateMap<StoreDTO, Store>();
+            CreateMap<ProductDTO, Product>();
             CreateMap<StoreProduct, StoreProductListDTO>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
             CreateMap<StoreProductDTO, StoreProduct>();

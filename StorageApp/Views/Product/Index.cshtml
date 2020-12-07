@@ -47,7 +47,7 @@
                 <td>@item.Id</td>
                 <td>@item.Name</td>
                 <td>@item.Manufacturer</td>
-                <td>@item.Pricture</td>
+                <td>@item.Picture</td>
                 <td>
                     <div class="dropdown">
                         <a class="btn btn-war dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,9 +56,25 @@
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <ul>
-                                <li><a class="dropdown-item" href="#">Show</a></li>
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
-                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Show"
+                                       asp-route-id="@item.Id">Show</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Edit"
+                                       asp-route-id="@item.Id">Edit</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="Delete"
+                                       asp-route-id="@item.Id">Delete</a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -67,8 +83,6 @@
         }
     </tbody>
 </table>
-
-
 
 
 
@@ -82,10 +96,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="#">
+                <form method="post" asp-action="Add">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input name="name" type="email" class="form-control" placeholder="Name">
+                        <input name="name" type="text" class="form-control" placeholder="Name">
                     </div>
                     <div class="form-group">
                         <label for="manufacturer">Manufacturer</label>

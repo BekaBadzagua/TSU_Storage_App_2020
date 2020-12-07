@@ -12,7 +12,7 @@ namespace DAL.Entities
 
         public string Manufacturer { get; set; }
 
-        public string Pricture { get; set; }
+        public string Picture { get; set; }
 
         public ICollection<StoreProduct> ProductStores { get; set; }
 

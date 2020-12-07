@@ -12,7 +12,7 @@ namespace BLL.DTOs.Product
 
         public string Manufacturer { get; set; }
 
-        public string Pricture { get; set; }
+        public string Picture { get; set; }
 
     }
 }

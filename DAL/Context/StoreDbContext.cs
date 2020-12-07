@@ -36,7 +36,7 @@ namespace DAL.Context
                 .IsRequired();
 
             modelBuilder.Entity<Product>()
-                .Property(x => x.Pricture)
+                .Property(x => x.Picture)
                 .HasMaxLength(500)
                 .IsRequired();
 

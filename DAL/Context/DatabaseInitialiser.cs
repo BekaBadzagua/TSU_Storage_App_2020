@@ -17,21 +17,21 @@ namespace DAL.Context
                    Id = 1,
                    Name = "Guitar",
                    Manufacturer = "Gibson",
-                   Pricture = "picture_link"
+                   Picture = "picture_link"
                },
                  new Product()
                  {
                      Id = 2,
                      Name = "Piano",
                      Manufacturer = "Yamaha",
-                     Pricture = "picture_link"
+                     Picture = "picture_link"
                  },
                  new Product()
                  {
                      Id = 3,
                      Name = "Strings",
                      Manufacturer = "Dadario",
-                     Pricture = "picture_link"
+                     Picture = "picture_link"
                  }
                );
 
