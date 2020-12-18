@@ -53,6 +53,7 @@ namespace DAL.Context
             );
 
 
+
             modelBuilder.Entity<StoreProduct>().HasData(
                 new StoreProduct()
                 {
@@ -79,6 +80,22 @@ namespace DAL.Context
                     BarCode = 12451210
                 }
             );
+
+            modelBuilder.Entity<User>().HasData(
+               new User()
+               {
+                   Id = 1,
+                   Email = "test@gmail.com",
+                   Password = "test123",
+
+               },
+                 new User()
+                 {
+                     Id = 2,
+                     Email = "g@gmail.com",
+                     Password = "Yamaha",
+                 }
+               );
 
         }
     }

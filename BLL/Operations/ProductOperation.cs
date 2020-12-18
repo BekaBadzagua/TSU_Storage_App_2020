@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using Service.Interfaces;
 using DAL.Entities;
+using System.Linq;
 
 namespace BLL.Operations
 {
@@ -35,11 +36,11 @@ namespace BLL.Operations
             _uow.Product.Delete(id);
         }
 
-        public IEnumerable<ProductListDTO> GetAll()
+        public IEnumerable<ProductDTO> GetAll()
         {
             var products = _uow.Product.FindAll();
 
-            return _mapper.Map<IEnumerable<ProductListDTO>>(products);
+            return _mapper.Map<IEnumerable<ProductDTO>>(products);
 
         }
 
@@ -47,6 +48,22 @@ namespace BLL.Operations
         {
             var product = _uow.Product.Get(id);
             return _mapper.Map<ProductDTO>(product);
+        }
+
+        public IEnumerable<ProductDTO> GetByFilter(ProductDTO filter)
+        {
+            var products = _uow.Product.FindAll();
+
+            if (filter.Id != 0)
+                products = products.Where(x => x.Id == filter.Id);
+            if (filter.Name != null)
+                products = products.Where(x => x.Name.ToLower().Contains(filter.Name.ToLower()));
+            if (filter.Manufacturer != null)
+                products = products.Where(x => x.Manufacturer.ToLower().Contains(filter.Manufacturer.ToLower()));
+            if (filter.Picture != null && filter.Picture != "All")
+                products = products.Where(x => x.Picture == filter.Picture);
+
+            return _mapper.Map<IEnumerable<ProductDTO>>(products);
         }
     }
 }

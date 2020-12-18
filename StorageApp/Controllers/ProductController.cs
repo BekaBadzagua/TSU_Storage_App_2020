@@ -35,41 +35,42 @@ namespace StorageApp.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult Index()
+
+        public IActionResult Index(ProductDTO filter)
         {
-            ProductListVM model = new ProductListVM()
+            var model = new ProductListVM()
             {
-                Products = _productOperation.GetAll()
+                Products = _productOperation.GetByFilter(filter)
             };
 
             return View(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(ProductDTO product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            _productOperation.Edit(product);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
             var model = _productOperation.Get(id);
-
             return View(model);
+
         }
 
-        [HttpPost]
         public RedirectToActionResult Add(ProductDTO product)
         {
             _productOperation.Add(product);
             return RedirectToAction("Index", "Product");
         }
-        [HttpPost]
-        public RedirectToActionResult Edit(ProductDTO product)
-        {
-            _productOperation.Edit(product);
-            return RedirectToAction("Index", "Product");
-        }
-        public RedirectToActionResult Delte(int id)
-        {
-            _productOperation.Delete(id);
-            return RedirectToAction("Index", "Product");
-        }
+
     }
 }

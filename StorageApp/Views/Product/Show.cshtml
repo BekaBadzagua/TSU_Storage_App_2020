@@ -4,6 +4,11 @@
     ViewData["Title"] = "Show";
 }
 
+<div class="error-list">
+    <span asp-validation-for="FormAdd.ProductID" class="text-danger"></span>
+    <span asp-validation-for="FormAdd.BarCode" class="text-danger"></span>
+    <span asp-validation-for="FormAdd.Price" class="text-danger"></span>
+</div>
 
 <div class="centered">
     <h2>@Model.Product.Name</h2>

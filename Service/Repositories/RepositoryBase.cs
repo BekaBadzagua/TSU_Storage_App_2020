@@ -17,9 +17,9 @@ namespace Service.Repositories
             this.Context = context;
         }
 
+
         public void Create(T entity)
         {
-
             Context.Set<T>().Add(entity);
             Context.SaveChanges();
         }

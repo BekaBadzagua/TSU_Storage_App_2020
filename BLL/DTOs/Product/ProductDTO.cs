@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using BLL.DTOs.Store;
 
 namespace BLL.DTOs.Product
 {

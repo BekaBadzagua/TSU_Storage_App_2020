@@ -20,6 +20,8 @@ namespace DAL.Context
 
         public DbSet<StoreProduct> StoreProduct { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,6 +74,14 @@ namespace DAL.Context
             modelBuilder.Entity<StoreProduct>()
                 .Property(x => x.Price)
                 .IsRequired();
+            modelBuilder.Entity<User>()
+                .Property(x => x.Email)
+                .IsRequired()
+                .HasMaxLength(70);
+            modelBuilder.Entity<User>()
+                .Property(x => x.Password)
+                .IsRequired()
+                .HasMaxLength(50);
 
             modelBuilder.Seed();
         }

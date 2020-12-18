@@ -3,6 +3,12 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="error-list">
+    <span asp-validation-for="FormProduct.Name" class="text-danger"></span>
+    <span asp-validation-for="FormProduct.Manufacturer" class="text-danger"></span>
+    <span asp-validation-for="FormProduct.Picture" class="text-danger"></span>
+</div>
+
 <h2>Product List</h2>
 
 
@@ -11,6 +17,7 @@
     Add Product
 </button>
 
+<form method="GET" asp-action="Index" id="my_form"></form>
 
 <table class="table table-hover">
     <thead>
@@ -25,20 +32,20 @@
     <tbody>
         <tr>
             <td style="max-width:50px">
-                <input type="text" name="id" class="form-control">
+                <input form="my_form" type="text" name="id" class="form-control">
             </td>
             <td>
-                <input type="text" name="name" class="form-control">
+                <input form="my_form" type="text" name="name" class="form-control">
             </td>
             <td>
-                <input type="text" name="manufacturer" class="form-control">
+                <input form="my_form" type="text" name="manufacturer" class="form-control">
             </td>
             <td>
-                <input type="text" name="picture" class="form-control">
+                <input form="my_form" type="text" name="picture" class="form-control">
             </td>
             
             <td>
-                <button type="button" class="btn btn-info">ძებნა</button>
+                <button type="submit" form="my_form" class="btn btn-info">ძებნა</button>
             </td>
         </tr>
         @foreach (var item in Model.Products)
