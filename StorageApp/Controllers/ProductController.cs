@@ -26,7 +26,8 @@ namespace StorageApp.Controllers
         public RedirectToActionResult Delete(int id)
         {
             string pictureName = _productOperation.Get(id).Picture;
-            FileTools.DeleteFile(pictureName.Substring(1), _env);
+            if (pictureName != null && pictureName != "")
+                FileTools.DeleteFile(pictureName.Substring(1), _env);
 
             _productOperation.Delete(id);
             return RedirectToAction("Index", "Product");
@@ -64,7 +65,8 @@ namespace StorageApp.Controllers
             string pictureName = product.Picture;
             if (file != null && file.Length > 0)
             {
-                FileTools.DeleteFile(pictureName.Substring(1), _env);
+                if(pictureName != null && pictureName != "")
+                    FileTools.DeleteFile(pictureName.Substring(1), _env);
                 pictureName = FileTools.UploadFile(file, _env);
             }
             product.Picture = pictureName;
@@ -81,8 +83,17 @@ namespace StorageApp.Controllers
 
         }
 
-        public RedirectToActionResult Add(ProductDTO product, IFormFile file)
+        public IActionResult Add(ProductDTO product, IFormFile file)
         {
+            if (!ModelState.IsValid)
+            {
+                var model = new ProductListVM()
+                {
+                    Products = _productOperation.GetAll(),
+                    FormProduct = product
+                };
+                return View("Index", model);
+            }
             product.Picture = FileTools.UploadFile(file, _env);
             _productOperation.Add(product);
             return RedirectToAction("Index", "Product");
