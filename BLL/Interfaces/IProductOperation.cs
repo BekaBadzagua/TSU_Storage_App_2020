@@ -13,6 +13,5 @@ namespace BLL.Interfaces
         void Add(ProductDTO product);
         void Edit(ProductDTO product);
         void Delete(int id);
-        //void Add(object product);
     }
 }

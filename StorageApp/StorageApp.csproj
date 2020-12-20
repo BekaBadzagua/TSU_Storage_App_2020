@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Uploads\2020\12\" />
+  </ItemGroup>
+
 </Project>

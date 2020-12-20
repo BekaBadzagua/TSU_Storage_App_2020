@@ -40,9 +40,8 @@
             <td>
                 <input form="my_form" type="text" name="manufacturer" class="form-control">
             </td>
-            <td>
-                <input form="my_form" type="text" name="picture" class="form-control">
-            </td>
+
+            <td></td>
             
             <td>
                 <button type="submit" form="my_form" class="btn btn-info">ძებნა</button>
@@ -54,7 +53,9 @@
                 <td>@item.Id</td>
                 <td>@item.Name</td>
                 <td>@item.Manufacturer</td>
-                <td>@item.Picture</td>
+                <td class="td-image">
+                    <img  src="@item.Picture" alt="@item.Name"/>
+                </td>
                 <td>
                     <div class="dropdown">
                         <a class="btn btn-war dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,6 +75,12 @@
                                        asp-controller="Product"
                                        asp-action="Edit"
                                        asp-route-id="@item.Id">Edit</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Product"
+                                       asp-action="UpdateImage"
+                                       asp-route-id="@item.Id">Update Image</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item"
@@ -103,7 +110,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" asp-action="Add">
+                <form method="post" asp-action="Add" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input name="name" type="text" class="form-control" placeholder="Name">
@@ -113,10 +120,10 @@
                         <input name="manufacturer" type="text" class="form-control" placeholder="City, Street, 1">
                     </div>
                     <div class="form-group">
-                        <label for="picture">Picture</label>
-                        <input name="picture" type="text" class="form-control" placeholder="picture">
+                        <label for="file">Picture</label>
+                        <input name="file" type="file" class="form-control">
                     </div>
-                    
+
                     <div style="height:40px">
                         <button type="submit" class="btn btn-primary right">Save changes</button>
                     </div>

@@ -22,11 +22,16 @@ li {
 .right {
     float: right;
 }
-
-
-
+.table > tbody > tr > td {
+    vertical-align: middle
+}
+.td-image img {
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+}
 /* Home */
-.home-buttons-wrapper{
+.home-buttons-wrapper {
     padding-top: 15px;
 }
 .home-buttons-wrapper a {

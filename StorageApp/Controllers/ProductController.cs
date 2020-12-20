@@ -1,26 +1,33 @@
-﻿using System;
+﻿using BLL.DTOs.Product;
+using BLL.Interfaces;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using StorageApp.Helper;
+using StorageApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BLL.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using StorageApp.Models;
-using BLL.DTOs.Product;
-using DAL.Entities;
 
 namespace StorageApp.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductOperation _productOperation;
+        private readonly IHostingEnvironment _env;
 
-
-        public ProductController(IProductOperation productOperation)
+        public ProductController(IProductOperation productOperation, IHostingEnvironment env)
         {
             _productOperation = productOperation;
+            _env = env;
         }
+
         public RedirectToActionResult Delete(int id)
         {
+            string pictureName = _productOperation.Get(id).Picture;
+            FileTools.DeleteFile(pictureName.Substring(1), _env);
+
             _productOperation.Delete(id);
             return RedirectToAction("Index", "Product");
         }
@@ -48,12 +55,20 @@ namespace StorageApp.Controllers
 
 
         [HttpPost]
-        public IActionResult Edit(ProductDTO product)
+        public IActionResult Edit(ProductDTO product, IFormFile file)
         {
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
+            string pictureName = product.Picture;
+            if (file != null && file.Length > 0)
+            {
+                FileTools.DeleteFile(pictureName.Substring(1), _env);
+                pictureName = FileTools.UploadFile(file, _env);
+            }
+            product.Picture = pictureName;
+
             _productOperation.Edit(product);
             return RedirectToAction(nameof(Index));
         }
@@ -66,8 +81,9 @@ namespace StorageApp.Controllers
 
         }
 
-        public RedirectToActionResult Add(ProductDTO product)
+        public RedirectToActionResult Add(ProductDTO product, IFormFile file)
         {
+            product.Picture = FileTools.UploadFile(file, _env);
             _productOperation.Add(product);
             return RedirectToAction("Index", "Product");
         }

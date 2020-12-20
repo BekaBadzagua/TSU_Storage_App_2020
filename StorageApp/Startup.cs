@@ -50,7 +50,7 @@ namespace StorageApp
 
             // Database Layer
             services.AddDbContext<StoreDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("StoreDb"))
+                options.UseSqlServer(Configuration.GetConnectionString("StoreDbBeka"))
             );
 
             services.Configure<RouteOptions>(options =>

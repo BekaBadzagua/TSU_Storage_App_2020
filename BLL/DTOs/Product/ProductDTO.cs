@@ -18,7 +18,6 @@ namespace BLL.DTOs.Product
         [Required(ErrorMessage = "Manufacturer Cannot be Empty")]
         public string Manufacturer { get; set; }
 
-        [Required(ErrorMessage = "Picture Cannot be Empty")]
         public string Picture { get; set; }
     }
 }
